@@ -13,7 +13,7 @@ export function UsersList() {
     <div className="space-y-4">
       {isLoading && <UsersListSkeleton />}
 
-      {users.map(({ id, name, username }) => (
+      {users.map(({ id, name, username, blocked }) => (
         <div
           key={id}
           className="flex items-center justify-between rounded-md border p-4"
@@ -31,6 +31,7 @@ export function UsersList() {
           </div>
 
           <Switch
+            checked={blocked}
             onCheckedChange={(blocked) => handleBlockedChange(id, blocked)}
           />
         </div>

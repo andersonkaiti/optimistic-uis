@@ -22,12 +22,12 @@
       "id": "4",
       "name": "Anderson Kaiti",
       "username": "andersonkaiti",
-      "blocked": false
+      "blocked": true
     },
     {
       "name": "Mateus Silva",
       "username": "maateusilva",
-      "blocked": true,
+      "blocked": false,
       "id": "dpCfX8wmqj8"
     }
   ],
