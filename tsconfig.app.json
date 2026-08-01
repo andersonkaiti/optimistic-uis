@@ -26,6 +26,8 @@
       "@/*": ["./src/*"],
       "@components/*": ["./src/components/*"],
       "@contexts/*": ["./src/contexts/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@http/*": ["./src/http/*"],
       "@lib/*": ["./src/lib/*"]
     }
   },

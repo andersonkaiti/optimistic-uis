@@ -1,32 +1,15 @@
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
-import { Switch } from './ui/switch'
-
-const users = [
-  {
-    id: Math.random(),
-    name: 'Linus Torvalds',
-    username: 'torvalds',
-  },
-  {
-    id: Math.random(),
-    name: 'Evan You',
-    username: 'yyx990803',
-  },
-  {
-    id: Math.random(),
-    name: 'Ryan Dahl',
-    username: 'ry',
-  },
-  {
-    id: Math.random(),
-    name: 'Anderson Kaiti',
-    username: 'andersonkaiti',
-  },
-]
+import { useUsers } from '@hooks/use-users'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
+import { Switch } from '../ui/switch'
+import { UsersListSkeleton } from './skeleton'
 
 export function UsersList() {
+  const { users, isLoading } = useUsers()
+
   return (
     <div className="space-y-4">
+      {isLoading && <UsersListSkeleton />}
+
       {users.map((user) => (
         <div
           key={user.id}
