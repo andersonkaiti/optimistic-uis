@@ -23,6 +23,13 @@
       "name": "Anderson Kaiti",
       "username": "andersonkaiti",
       "blocked": false
+    },
+    {
+      "name": "Mateus Silva",
+      "username": "maateusilva",
+      "blocked": false,
+      "id": "dpCfX8wmqj8"
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
