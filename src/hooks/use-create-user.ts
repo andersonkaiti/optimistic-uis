@@ -3,13 +3,16 @@ import { createUser } from '@http/create-user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { USERS_QUERY_KEY } from './use-users'
 
+export const CREATE_USER_MUTATION_KEY = ['create-user']
+
 export function useCreateUser() {
   const queryClient = useQueryClient()
 
   const { mutateAsync, isPending } = useMutation({
+    mutationKey: CREATE_USER_MUTATION_KEY,
     mutationFn: createUser,
     onSuccess: () => {
-      queryClient.invalidateQueries({
+      return queryClient.invalidateQueries({
         queryKey: USERS_QUERY_KEY,
       })
     },

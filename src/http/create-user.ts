@@ -9,6 +9,8 @@ export async function createUser({
   username,
   blocked,
 }: ICreateUserRequest): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, 1500))
+
   const response = await fetch('http://localhost:3001/users', {
     method: 'POST',
     headers: {
