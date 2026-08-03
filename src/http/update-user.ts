@@ -1,6 +1,7 @@
-interface IUpdateUserRequest {
+import type { IUser } from '@/types/user'
+
+interface IUpdateUserRequest extends Partial<Omit<IUser, 'id'>> {
   id: string
-  blocked?: boolean
 }
 
 export async function updateUser({

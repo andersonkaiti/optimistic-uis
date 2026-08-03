@@ -1,15 +1,6 @@
-export interface IUser {
-  id: string
-  name: string
-  username: string
-  blocked: boolean
-}
+import type { IUser } from '@/types/user'
 
-interface ICreateUserRequest {
-  name: string
-  username: string
-  blocked: boolean
-}
+interface ICreateUserRequest extends Omit<IUser, 'id'> {}
 
 export async function createUser({
   name,

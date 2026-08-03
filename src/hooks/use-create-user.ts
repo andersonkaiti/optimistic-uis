@@ -1,7 +1,7 @@
 import { toast } from '@components/ui/toast'
-import type { IUser } from '@http/create-user'
 import { createUser } from '@http/create-user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import type { IUser } from '@/types/user'
 import { USERS_QUERY_KEY } from './use-users'
 
 export function useCreateUser() {
