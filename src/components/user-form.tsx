@@ -1,4 +1,5 @@
 import { useCreateUser } from '@hooks/use-create-user'
+import { Loader2 } from 'lucide-react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 
@@ -13,6 +14,7 @@ export function UserForm() {
       </div>
 
       <Button type="submit" className="mt-3 w-full">
+        {isLoading && <Loader2 />}
         {isLoading ? 'Cadastrando' : 'Cadastrar'}
       </Button>
     </form>
