@@ -1,3 +1,10 @@
+export interface IUser {
+  id: string
+  name: string
+  username: string
+  blocked: boolean
+}
+
 interface ICreateUserRequest {
   name: string
   username: string
@@ -8,9 +15,7 @@ export async function createUser({
   name,
   username,
   blocked,
-}: ICreateUserRequest): Promise<void> {
-  await new Promise((resolve) => setTimeout(resolve, 1500))
-
+}: ICreateUserRequest): Promise<IUser> {
   const response = await fetch('http://localhost:3001/users', {
     method: 'POST',
     headers: {

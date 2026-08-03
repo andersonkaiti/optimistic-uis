@@ -8,11 +8,11 @@ export function UserForm() {
   return (
     <form action={createUserAction} className="rounded-md bg-card/50 p-4">
       <div className="flex gap-3">
-        <Input placeholder="Nome do usuário" name="name" disabled={isLoading} />
-        <Input placeholder="@ no GitHub" name="username" disabled={isLoading} />
+        <Input placeholder="Nome do usuário" name="name" />
+        <Input placeholder="@ no GitHub" name="username" />
       </div>
 
-      <Button type="submit" className="mt-3 w-full" disabled={isLoading}>
+      <Button type="submit" className="mt-3 w-full">
         {isLoading ? 'Cadastrando' : 'Cadastrar'}
       </Button>
     </form>
