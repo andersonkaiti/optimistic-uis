@@ -1,8 +1,7 @@
 import { toast } from '@components/ui/toast'
 import { createUser } from '@http/create-user'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import type { IUser } from '@/types/user'
-import { USERS_QUERY_KEY } from './use-users'
+import { USERS_QUERY_KEY, type UsersQueryData } from './use-users'
 
 export function useCreateUser() {
   const queryClient = useQueryClient()
@@ -12,10 +11,11 @@ export function useCreateUser() {
     onMutate: (variables) => {
       const tempUserId = String(Math.random())
 
-      queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
+      queryClient.setQueryData<UsersQueryData>(USERS_QUERY_KEY, (old) =>
         old?.concat({
           ...variables,
           id: tempUserId,
+          status: 'pending',
         }),
       )
 
@@ -24,15 +24,17 @@ export function useCreateUser() {
     onSuccess: async (data, _variables, context) => {
       await queryClient.cancelQueries({ queryKey: USERS_QUERY_KEY })
 
-      queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
+      queryClient.setQueryData<UsersQueryData>(USERS_QUERY_KEY, (old) =>
         old?.map((user) => (user.id === context.tempUserId ? data : user)),
       )
     },
     onError: async (_error, _variables, context) => {
       await queryClient.cancelQueries({ queryKey: USERS_QUERY_KEY })
 
-      queryClient.setQueryData<IUser[]>(USERS_QUERY_KEY, (old) =>
-        old?.filter((user) => user.id !== context?.tempUserId),
+      queryClient.setQueryData<UsersQueryData>(USERS_QUERY_KEY, (old) =>
+        old?.map((user) =>
+          user.id === context?.tempUserId ? { ...user, status: 'error' } : user,
+        ),
       )
     },
   })
